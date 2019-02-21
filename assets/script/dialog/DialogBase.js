@@ -12,10 +12,25 @@ cc.Class({
     extends: cc.Component,
     // LIFE-CYCLE CALLBACKS:
 
+    onLoad () {
+        var root = this.node.getChildByName("root");
+        root.scale = 0;
+        root.runAction(
+            cc.sequence(
+                cc.scaleTo(0.15, 1), 
+                cc.scaleTo(0.1, 1.08),
+                cc.scaleTo(0.1, 1)
+            )
+        );
+    },
+
+
     close () {
         var DialogManager = require("DialogManager");
         DialogManager.closeDialog(this.node);
     }
+
+    
 
     // update (dt) {},
 });
