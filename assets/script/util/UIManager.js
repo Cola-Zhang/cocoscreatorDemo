@@ -1,3 +1,4 @@
+var DialogManager = require("DialogManager");
 var UIManager = {
     getViewRoot: function(){
         return cc.find("Canvas/viewRoot");
@@ -7,9 +8,31 @@ var UIManager = {
         console.log("showScene");
     },
 
-    showDialogConfimeOneBtn: function(){
-        var DialogManager = require("DialogManager");
-        DialogManager.showDialog("DialogConfirmOneBtn");
+    /**
+     * 
+     * var args = {
+            content: content,
+            caller: caller,
+            callback: callback,
+            btnText: "确定",
+            btnClickClose: true
+        }
+     */
+    showDialogAlertConfirm: function(args){
+        return DialogManager.showDialog("DialogAlertOneBtn", args);
+    },
+
+    /**
+     * var args = {
+            content: content,
+            caller: caller,
+            confirmCallback: confirmCallback,
+            cancelCallback: cancelCallback,
+            btnClickClose: true
+        }
+     */
+    showDialogAlertQuest: function(args){
+        return DialogManager.showDialog("DialogAlertTwoBtn", args);
     }
 };
 

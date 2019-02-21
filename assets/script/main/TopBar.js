@@ -8,7 +8,7 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-
+var UIManager = require("UIManager");
 
 cc.Class({
     extends: cc.Component,
@@ -36,9 +36,23 @@ cc.Class({
     // onLoad () {},
 
     onActivityBtnClick () {
-        var UIManager = require("UIManager");
-        UIManager.showDialogConfimeOneBtn();
+
+        var args = {
+            content: "您好，欢迎测试确定警示框",
+            caller: this, 
+            callback: this.onDialogAlertConfirmClick,
+            //btnClickClose: false
+        }
+        UIManager.showDialogAlertConfirm(args);
     },
+
+    onDialogAlertConfirmClick() {
+        var args = {
+            content: "您好，欢迎测试询问警示框?",
+            btnClickClose: true
+        }
+        UIManager.showDialogAlertQuest(args);
+    }
 
     // update (dt) {},
 });

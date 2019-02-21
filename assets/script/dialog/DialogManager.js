@@ -37,6 +37,8 @@ var DialogManager = {
         if (dialog){
             console.log("DialgManager closeDialog find ok");
             dialog.destroy();
+        }else{
+            console.log("DialogManager can't find");
         }
     },
 
@@ -49,7 +51,11 @@ var DialogManager = {
     },
 
     closeAllDialog: function(){
-
+        for(let i= stack.length-1;i>=0;i--){
+            let dialog = stack[i];
+            dialog.destroy();
+        }
+        stack = [];
     }
 };
 
