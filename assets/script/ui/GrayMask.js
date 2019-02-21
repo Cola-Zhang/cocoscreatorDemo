@@ -11,10 +11,15 @@ cc.Class({
 
     onLoad() {
         var bg = this.bg;
-        bg.runAction(
-            cc.sequence(
-                cc.fadeTo(0.15, 178)
-            )
+        bg.node.runAction(
+            cc.fadeTo(0.15, 178)
         );
+    },
+
+    close() {
+        var bg = this.bg;
+        bg.node.runAction(
+            cc.fadeTo(0.15, 0)
+        )
     }
 });

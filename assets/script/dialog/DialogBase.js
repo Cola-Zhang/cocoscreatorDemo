@@ -14,6 +14,7 @@ cc.Class({
 
     onLoad () {
         var root = this.node.getChildByName("root");
+        this.root = root;
         root.scale = 0;
         root.runAction(
             cc.sequence(
@@ -24,13 +25,27 @@ cc.Class({
         );
     },
 
-
     close () {
         var DialogManager = require("DialogManager");
         DialogManager.closeDialog(this.node);
-    }
+    },
 
-    
+    doClose () {
+        this.root.runAction(
+            cc.sequence(
+                cc.scaleTo(0.1, 1.04), 
+                cc.scaleTo(0.1, 1),
+                cc.scaleTo(0.15, 0),
+                cc.callFunc(function(){
+                    this.node.destroy();
+                }, this)
+            )
+        );
+        var grayMask = this.node.getChildByName("GrayMask");
+        if (grayMask) {
+            grayMask.getComponent(grayMask.getName()).close();
+        }
+    }
 
     // update (dt) {},
 });

@@ -36,7 +36,8 @@ var DialogManager = {
         }
         if (dialog){
             console.log("DialgManager closeDialog find ok");
-            dialog.destroy();
+            var script = dialog.getComponent(dialog.getName());
+            script.doClose();
         }else{
             console.log("DialogManager can't find");
         }
