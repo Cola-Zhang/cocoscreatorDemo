@@ -66,7 +66,7 @@ cc.Class({
         if(this._isCloseOnSide){
             this.root.on(cc.Node.EventType.TOUCH_END, function(){
 
-            });
+            }, this);
             this.grayMask.on(cc.Node.EventType.TOUCH_END, function(a,b){
                 this.close();
             }, this);

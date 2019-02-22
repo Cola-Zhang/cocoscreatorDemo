@@ -52,11 +52,16 @@ var DialogManager = {
     },
 
     closeAllDialog: function(){
+        var stack = this.stack;
         for(let i= stack.length-1;i>=0;i--){
             let dialog = stack[i];
             dialog.destroy();
         }
-        stack = [];
+        this.stack = [];
+    },
+
+    reset: function(){
+        this.stack = [];
     }
 };
 
