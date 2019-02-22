@@ -1,4 +1,4 @@
-var DialogManager = require("DialogManager");
+
 var UIManager = {
     getViewRoot: function(){
         return cc.find("Canvas/viewRoot");
@@ -33,10 +33,16 @@ var UIManager = {
      */
     showDialogAlertQuest: function(args){
         return DialogManager.showDialog("DialogAlertTwoBtn", args);
+    },
+
+    newTouchCover: function(){
+        var node=new cc.Node();
+        var blockInputEvents = node.addComponent(cc.BlockInputEvents);
+        node.width = 640;
+        node.height = 1136;
+        return node;
     }
 };
 
-module.exports = UIManager;
-
-//window.UIManager = UIManager;
+window.UIManager = UIManager;
 

@@ -1,9 +1,8 @@
 
 cc.Class({
     extends: require("DialogBase"),
-
-    close: function() {
-        var DialogManager = require("DialogManager");
-        DialogManager.closeDialog(this.node);
+    onLoad: function() {
+        this._super();
+        this.setCloseOnSide(false);
     }
 });

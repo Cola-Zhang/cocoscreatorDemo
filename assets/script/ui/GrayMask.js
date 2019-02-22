@@ -9,17 +9,22 @@ cc.Class({
         },
     },
 
-    onLoad() {
+    onLoad: function() {
         var bg = this.bg;
         bg.node.runAction(
             cc.fadeTo(0.15, 178)
         );
     },
 
-    close() {
+    close: function() {
         var bg = this.bg;
         bg.node.runAction(
-            cc.fadeTo(0.15, 0)
-        )
+            cc.sequence(
+                cc.fadeTo(0.15, 0),
+                cc.callFunc(function(){
+                    this.node.destroy();
+                }, this)
+            )
+        );
     }
 });

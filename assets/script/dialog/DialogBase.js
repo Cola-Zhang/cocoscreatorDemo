@@ -12,25 +12,34 @@ cc.Class({
     extends: cc.Component,
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    ctor: function(){
+        this._isCloseOnSide = true;
+    },
+
+    onLoad: function() {
+        this.createTouchCoverAll();
         var root = this.node.getChildByName("root");
         this.root = root;
+        this.grayMask = this.node.getChildByName("GrayMask");
         root.scale = 0;
         root.runAction(
             cc.sequence(
                 cc.scaleTo(0.15, 1), 
                 cc.scaleTo(0.1, 1.08),
-                cc.scaleTo(0.1, 1)
+                cc.scaleTo(0.1, 1),
+                cc.callFunc(function(){
+                    this.onAnimationInFinish();
+                }, this)
             )
         );
     },
 
-    close () {
-        var DialogManager = require("DialogManager");
+    close: function() {
         DialogManager.closeDialog(this.node);
     },
 
-    doClose () {
+    doClose: function() {
+        this.createTouchCoverAll();
         this.root.runAction(
             cc.sequence(
                 cc.scaleTo(0.1, 1.04), 
@@ -41,11 +50,47 @@ cc.Class({
                 }, this)
             )
         );
-        var grayMask = this.node.getChildByName("GrayMask");
-        if (grayMask) {
-            grayMask.getComponent(grayMask.getName()).close();
+        this.grayMask.getComponent(this.grayMask.getName()).close();
+    },
+
+    setCloseOnSide: function(isCloseOnSide){
+        this._isCloseOnSide = isCloseOnSide;
+    },
+
+    getRoot: function(){
+        return this.node.getChildByName("root");
+    },
+
+    onAnimationInFinish: function(){
+        this.removeTouchCoverAll();
+        if(this._isCloseOnSide){
+            this.root.on(cc.Node.EventType.TOUCH_END, function(){
+
+            });
+            this.grayMask.on(cc.Node.EventType.TOUCH_END, function(a,b){
+                this.close();
+            }, this);
+        }
+    },
+
+    createTouchCoverAll: function(){
+        if(!this.touchCoverNode){
+            this.touchCoverNode = UIManager.newTouchCover();
+            console.log("createTouchCoverAll");
+            this.node.addChild(this.touchCoverNode, 100);
+        }
+    },
+
+    removeTouchCoverAll: function(){
+        if(this.touchCoverNode){
+            this.touchCoverNode.destroy();
         }
     }
+
+
+
+
+
 
     // update (dt) {},
 });

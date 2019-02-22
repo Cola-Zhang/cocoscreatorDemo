@@ -60,5 +60,5 @@ var DialogManager = {
     }
 };
 
-module.exports = DialogManager;
+window.DialogManager = DialogManager;
 
