@@ -1,26 +1,26 @@
 var DialogManager = {
     stack: [],
 
-    getDialogRoot: function(){
+    getRoot: function(){
         return cc.find("Canvas/dialogRoot");
     },
 
 
     showDialog: function(dialogName, dialogArgs){
         console.log("DialogManager showDialog", dialogName);
-        var self = this;
+        
         cc.loader.loadRes("prefab/dialog/"+dialogName, cc.Prefab, function(err, prefab) {
             if (err) {
                 console.error(err);
                 return;
             }
             var dialog =  cc.instantiate(prefab);
-            var dialogRoot = self.getDialogRoot();
+            var dialogRoot = this.getRoot();
             dialogRoot.addChild(dialog);
             var script = dialog.getComponent(dialogName);
             script.init(dialogArgs);
-            self.stack.push(dialog);
-        });
+            this.stack.push(dialog);
+        }.bind(this));
     },
 
     closeDialog: function(dialog){

@@ -9,14 +9,14 @@
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 cc.Class({
-    extends: require("SceneBase"),
+    extends: require("ViewBase"),
 
     properties: {
         
     },
 
     onSwitchBtnClick: function(){
-        cc.director.loadScene("SceneMain");
+        UIManager.showViewMain();
     }
 
 });

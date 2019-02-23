@@ -16,6 +16,10 @@ cc.Class({
         this._isCloseOnSide = true;
     },
 
+    init: function(){
+        
+    }
+
     onLoad: function() {
         this.createTouchCoverAll();
         var root = this.node.getChildByName("root");

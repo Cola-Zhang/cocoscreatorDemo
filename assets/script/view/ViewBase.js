@@ -15,8 +15,7 @@ cc.Class({
         
     },
 
-    onLoad: function(){
-        ViewManager.reset();
-        DialogManager.reset();
+    init: function(){
+
     }
 });

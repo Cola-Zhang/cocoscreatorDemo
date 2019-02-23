@@ -1,11 +1,12 @@
 
 var UIManager = {
-    getViewRoot: function(){
-        return cc.find("Canvas/viewRoot");
+    
+    showViewLaunch: function(){
+        ViewManager.showView("ViewLaunch");
     },
 
-    showScene: function(){
-        console.log("showScene");
+    showViewMain: function(){
+        ViewManager.showView("ViewMain")
     },
 
     /**
@@ -19,7 +20,7 @@ var UIManager = {
         }
      */
     showDialogAlertConfirm: function(args){
-        return DialogManager.showDialog("DialogAlertOneBtn", args);
+        DialogManager.showDialog("DialogAlertOneBtn", args);
     },
 
     /**
@@ -32,7 +33,7 @@ var UIManager = {
         }
      */
     showDialogAlertQuest: function(args){
-        return DialogManager.showDialog("DialogAlertTwoBtn", args);
+        DialogManager.showDialog("DialogAlertTwoBtn", args);
     },
 
     newTouchCover: function(){
