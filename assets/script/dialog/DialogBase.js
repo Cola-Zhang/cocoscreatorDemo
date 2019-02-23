@@ -18,13 +18,15 @@ cc.Class({
 
     init: function(){
         
-    }
+    },
 
     onLoad: function() {
-        this.createTouchCoverAll();
+        this.createTouchBlockNode();
         var root = this.node.getChildByName("root");
         this.root = root;
-        this.grayMask = this.node.getChildByName("GrayMask");
+        var grayMask = this.node.getChildByName("TouchBlockGrayMask");
+        this.grayMaskScript = grayMask.getComponent(grayMask.getName());
+        this.grayMaskScript.show();
         root.scale = 0;
         root.runAction(
             cc.sequence(
@@ -43,7 +45,7 @@ cc.Class({
     },
 
     doClose: function() {
-        this.createTouchCoverAll();
+        this.createTouchBlockNode();
         this.root.runAction(
             cc.sequence(
                 cc.scaleTo(0.1, 1.04), 
@@ -54,7 +56,7 @@ cc.Class({
                 }, this)
             )
         );
-        this.grayMask.getComponent(this.grayMask.getName()).close();
+        this.grayMaskScript.close();
     },
 
     setCloseOnSide: function(isCloseOnSide){
@@ -66,7 +68,7 @@ cc.Class({
     },
 
     onAnimationInFinish: function(){
-        this.removeTouchCoverAll();
+        this.removeTouchBlockNode();
         if(this._isCloseOnSide){
             this.root.on(cc.Node.EventType.TOUCH_END, function(){
 
@@ -77,17 +79,16 @@ cc.Class({
         }
     },
 
-    createTouchCoverAll: function(){
-        if(!this.touchCoverNode){
-            this.touchCoverNode = UIManager.newTouchCover();
-            console.log("createTouchCoverAll");
-            this.node.addChild(this.touchCoverNode, 100);
+    createTouchBlockNode: function(){
+        if(!this.touchBlockNode){
+            this.touchBlockNode = UIManager.newTouchBlock();
+            this.node.addChild(this.touchBlockNode, 100);
         }
     },
 
-    removeTouchCoverAll: function(){
-        if(this.touchCoverNode){
-            this.touchCoverNode.destroy();
+    removeTouchBlockNode: function(){
+        if(this.touchBlockNode){
+            this.touchBlockNode.destroy();
         }
     }
 

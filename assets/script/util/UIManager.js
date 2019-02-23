@@ -1,6 +1,10 @@
 
 var UIManager = {
     
+    getCanvas: function(){
+        return cc.find("Canvas");
+    },
+
     showViewLaunch: function(){
         ViewManager.showView("ViewLaunch");
     },
@@ -36,13 +40,13 @@ var UIManager = {
         DialogManager.showDialog("DialogAlertTwoBtn", args);
     },
 
-    newTouchCover: function(){
+    newTouchBlock: function(){
         var node=new cc.Node();
         var blockInputEvents = node.addComponent(cc.BlockInputEvents);
         node.width = 640;
         node.height = 1136;
         return node;
-    }
+    },
 };
 
 window.UIManager = UIManager;

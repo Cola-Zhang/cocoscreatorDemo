@@ -9,7 +9,7 @@ cc.Class({
         },
     },
 
-    onLoad: function() {
+    show: function(){
         var bg = this.bg;
         bg.node.runAction(
             cc.fadeTo(0.15, 178)

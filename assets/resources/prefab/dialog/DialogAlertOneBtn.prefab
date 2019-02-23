@@ -80,7 +80,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "GrayMask",
+    "_name": "TouchBlockGrayMask",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1

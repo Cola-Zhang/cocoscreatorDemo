@@ -17,5 +17,9 @@ cc.Class({
 
     init: function(){
 
+    },
+
+    onAnimationInFinish: function(){
+        
     }
 });
