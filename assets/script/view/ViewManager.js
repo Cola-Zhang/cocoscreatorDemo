@@ -27,6 +27,7 @@ var ViewManager = {
 
             var view =  cc.instantiate(prefabs[0]);
             this.view = view;
+            
             var widget = view.addComponent(cc.Widget);
             widget.isAlignTop = true;
             widget.isAlignBottom = true;
